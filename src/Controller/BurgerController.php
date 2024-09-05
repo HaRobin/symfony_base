@@ -10,8 +10,19 @@ use Symfony\Component\Routing\Attribute\Route;
 class BurgerController extends AbstractController
 {
     #[Route('/liste', name: 'liste')]
-    public function list(): Response
-    {
+    public function list(): Response {
         return $this->render('burgers_list.html.twig');
+    }
+
+    #[Route('/{id}', name: 'details')]
+    public function show(int $id): Response {
+        $burgers = [['id'=> '0', 'name' => 'cheeseburger', 'description' => 'burger avec du fromage'], ['id'=> '1', 'name' => 'chikenCrusty', 'description' => 'burger au poulet croustillant']];
+        try {
+            $burger = $burgers[$id];
+            
+        } catch (\Exception $e) {
+            $burger = null;
+        }
+        return $this->render('burgers_details.html.twig', ['burger' => $burger]);
     }
 }
