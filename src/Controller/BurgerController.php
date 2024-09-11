@@ -13,9 +13,9 @@ class BurgerController extends AbstractController {
         '1' => ['name' => 'chikenCrusty', 'description' => 'burger au poulet croustillant']
     ];
 
-    #[Route('/liste', name: 'liste')]
+    #[Route('/liste', name: 'list')]
     public function list(): Response {
-        return $this->render('burgers_list.html.twig');
+        return $this->render('burgers_list.html.twig', ['burgers' => $this->burgers]);
     }
 
     #[Route('/{id}', name: 'details')]
