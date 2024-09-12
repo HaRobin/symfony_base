@@ -25,7 +25,7 @@ class BurgerController extends AbstractController {
         ]);
     }
 
-    #[Route('/burger/create', name: 'burger_create')]
+    #[Route('/create', name: 'burger_create')]
     public function create(EntityManagerInterface $entityManager): Response
     {
         $burger = new Burger();
