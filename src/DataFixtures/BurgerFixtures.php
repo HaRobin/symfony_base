@@ -2,9 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Pain;
-use App\Entity\Product;
-use App\Entity\Sauce;
+use App\Entity\Burger;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -27,10 +25,14 @@ class BurgerFixtures extends Fixture implements DependentFixtureInterface
             "Truffle Burger",
             "Mediterranean Feta Burger"
         ];
- 
+        
         foreach ($nomsBurgers as $key => $nomBurger) {
-            $burger = new Sauce();
+            $burger = new Burger();
             $burger->setName($nomBurger);
+            $burger->setPrice(rand(5, 15));
+            // $burger->setPain($this->getReference(PainFixtures::PAIN_REFERENCE . '_' . rand(0, 2)));
+            // $burger->addSauce($this->getReference(SauceFixtures::SAUCE_REFERENCE . '_' . rand(0, 5)));
+            // $burger->addOignon($this->getReference(OignonFixtures::OIGNON_REFERENCE . '_' . rand(0, 4)));
             $manager->persist($burger);
             $this->addReference(self::BURGER_REFERENCE . '_' . $key, $burger);
         }

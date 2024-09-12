@@ -2,9 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Pain;
-use App\Entity\Product;
-use App\Entity\Sauce;
+use App\Entity\Oignon;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -23,7 +21,7 @@ class OignonFixtures extends Fixture
         ];
  
         foreach ($nomsPains as $key => $nomPain) {
-            $pain = new Sauce();
+            $pain = new Oignon();
             $pain->setName($nomPain);
             $manager->persist($pain);
             $this->addReference(self::OIGNON_REFERENCE . '_' . $key, $pain);
