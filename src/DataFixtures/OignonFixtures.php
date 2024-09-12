@@ -9,10 +9,12 @@ use Doctrine\Persistence\ObjectManager;
 class OignonFixtures extends Fixture
 {
     public const OIGNON_REFERENCE = 'Oignon';
+    
+    public const NUM_OIGNONS = 5;
 
     public function load(ObjectManager $manager): void
     {
-        $nomsPains = [
+        $nomsOignons = [
             "Caramelized Onions",
             "Crispy Fried Onions",
             "Red Onion Rings",
@@ -20,11 +22,11 @@ class OignonFixtures extends Fixture
             "Pickled Onions",
         ];
  
-        foreach ($nomsPains as $key => $nomPain) {
-            $pain = new Oignon();
-            $pain->setName($nomPain);
-            $manager->persist($pain);
-            $this->addReference(self::OIGNON_REFERENCE . '_' . $key, $pain);
+        foreach ($nomsOignons as $key => $nomOignon) {
+            $oignon = new Oignon();
+            $oignon->setName($nomOignon);
+            $manager->persist($oignon);
+            $this->addReference(self::OIGNON_REFERENCE . '_' . $key, $oignon);
         }
 
         $manager->flush();

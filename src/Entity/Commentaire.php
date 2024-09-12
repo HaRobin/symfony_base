@@ -37,4 +37,16 @@ class Commentaire
 
         return $this;
     }
+
+    public function setBurger(Burger $burger): static
+    {
+        $this->burger = $burger;
+
+        return $this;
+    }
+
+    public function getBurger(): ?Burger
+    {
+        return $this->burger;
+    }
 }

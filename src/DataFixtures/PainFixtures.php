@@ -10,6 +10,8 @@ class PainFixtures extends Fixture
 {
     public const PAIN_REFERENCE = 'Pain';
 
+    public const NUM_PAINS = 3;
+
     public function load(ObjectManager $manager): void
     {
         $nomsPains = [

@@ -30,9 +30,14 @@ class BurgerFixtures extends Fixture implements DependentFixtureInterface
             $burger = new Burger();
             $burger->setName($nomBurger);
             $burger->setPrice(rand(5, 15));
-            // $burger->setPain($this->getReference(PainFixtures::PAIN_REFERENCE . '_' . rand(0, 2)));
-            // $burger->addSauce($this->getReference(SauceFixtures::SAUCE_REFERENCE . '_' . rand(0, 5)));
-            // $burger->addOignon($this->getReference(OignonFixtures::OIGNON_REFERENCE . '_' . rand(0, 4)));
+            $burger->setPain($this->getReference(PainFixtures::PAIN_REFERENCE . '_' . rand(0, PainFixtures::NUM_PAINS - 1)));
+            $burger->setOignon($this->getReference(OignonFixtures::OIGNON_REFERENCE . '_' . rand(0, OignonFixtures::NUM_OIGNONS - 1)));
+            for ($i = 0; $i < rand(1, 3); $i++) {
+                $burger->addSauce($this->getReference(SauceFixtures::SAUCE_REFERENCE . '_' . rand(0, SauceFixtures::NUM_SAUCES - 1)));
+            }
+            for ($i = 0; $i < rand(1, 3); $i++) {
+                $burger->addCommentaire($this->getReference(CommentaireFixtures::COMMENTAIRE_REFERENCE . '_' . rand(0, CommentaireFixtures::NUM_COMMENTAIRES - 1)));
+            }
             $manager->persist($burger);
             $this->addReference(self::BURGER_REFERENCE . '_' . $key, $burger);
         }

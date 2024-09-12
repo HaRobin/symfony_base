@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\OignonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OignonRepository::class)]
@@ -20,6 +21,10 @@ class Oignon
     #[ORM\OneToMany(targetEntity: Burger::class, mappedBy: 'oignon')]
     private $burgers;
 
+    public function __construct()
+    {
+        $this->burgers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,5 +41,26 @@ class Oignon
         $this->name = $name;
 
         return $this;
+    }
+
+    public function addBurger(Burger $burger): static
+    {
+        if (!$this->burgers->contains($burger)) {
+            $this->burgers[] = $burger;
+        }
+
+        return $this;
+    }
+
+    public function removeBurger(Burger $burger): static
+    {
+        $this->burgers->removeElement($burger);
+
+        return $this;
+    }
+
+    public function getBurgers(): ArrayCollection
+    {
+        return $this->burgers;
     }
 }

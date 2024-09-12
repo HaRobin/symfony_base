@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BurgerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BurgerRepository::class)]
@@ -26,15 +28,26 @@ class Burger
     #[ORM\ManyToOne(targetEntity: Oignon::class)]
     private $oignon;
 
+    /**
+     * @var Collection
+     */
     #[ORM\ManyToMany(targetEntity: Sauce::class)]
     private $sauces;
 
     #[ORM\OneToOne(targetEntity: Image::class)]
     private $image;
 
+    /**
+     * @var Collection
+     */
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'burger')]
     private $commentaires;
 
+    public function __construct()
+    {
+        $this->sauces = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -73,6 +86,7 @@ class Burger
     public function setPain(?Pain $pain): static
     {
         $this->pain = $pain;
+        $pain->addBurger($this);
 
         return $this;
     }
@@ -89,15 +103,32 @@ class Burger
         return $this;
     }
 
-    public function getSauces(): ?Sauce
+    public function getSauces(): ?ArrayCollection
     {
         return $this->sauces;
     }
 
-    public function setSauces(?Sauce $sauces): static
+    public function setSauces(?ArrayCollection $sauces): static
     {
         $this->sauces = $sauces;
 
+        return $this;
+    }
+
+    public function addSauce(Sauce $sauce): static
+    {
+        if ($this->sauces->contains($sauce)) {
+            return $this;
+        }
+        $this->sauces[] = $sauce;
+        $sauce->addBurger($this);
+        return $this;
+    }
+
+    public function removeSauce(Sauce $sauce): static
+    {
+        $this->sauces->removeElement($sauce);
+        $sauce->removeBurger($this);
         return $this;
     }
 
@@ -110,6 +141,28 @@ class Burger
     {
         $this->image = $image;
 
+        return $this;
+    }
+
+    public function getCommentaires(): ?ArrayCollection
+    {
+        return $this->commentaires;
+    }
+
+    public function setCommentaires(?ArrayCollection $commentaires): static
+    {
+        $this->commentaires = $commentaires;
+
+        return $this;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): static
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            return $this;
+        }
+        $this->commentaires[] = $commentaire;
+        $commentaire->setBurger($this);
         return $this;
     }
 }

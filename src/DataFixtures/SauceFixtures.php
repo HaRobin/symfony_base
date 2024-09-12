@@ -12,6 +12,8 @@ class SauceFixtures extends Fixture
 {
     public const SAUCE_REFERENCE = 'Sauce';
 
+    public const NUM_SAUCES = 6;    
+
     public function load(ObjectManager $manager): void
     {
         $nomsSauces = [

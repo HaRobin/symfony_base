@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SauceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SauceRepository::class)]
@@ -20,6 +21,10 @@ class Sauce
     #[ORM\ManyToMany(targetEntity: Burger::class)]
     private $burgers;
 
+    public function __construct()
+    {
+        $this->burgers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -37,4 +42,20 @@ class Sauce
 
         return $this;
     }
+
+    public function addBurger(Burger $burger): static
+    {
+        if (!$this->burgers->contains($burger)) {
+            $this->burgers[] = $burger;
+        }
+
+        return $this;
+    }
+
+    public function removeBurger(Burger $burger): static
+    {
+        $this->burgers->removeElement($burger);
+
+        return $this;
+    } 
 }
