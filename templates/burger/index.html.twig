@@ -14,7 +14,9 @@
     <h1> Bienvenue sur la liste de tout les burgers !</h1>
     <ul>
         {% for burger in burgers %}
-            <li>{{ burger.name }} : {{ burger.price }} €</li>
+            <li>
+                <a href="{{ path('burger_details', {'id': burger.id}) }}">{{ burger.name }}</a> : {{ burger.price }} €
+            </li>
         {% endfor %}
     </ul>
     
