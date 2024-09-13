@@ -9,12 +9,14 @@
 {% else %}
 <h1> Bienvenue sur les détails du burger {{ burger.getId() }}, le {{ burger.getName() }} !</h1>
 
+<img class="card-img-top" src="{{ asset('images/' ~ burger.getImage().getName()) }}" alt="Card image cap" style="max-height: 40%; max-width: 60%;">
+<br>
+
 Voici sa ses ingrédients : 
 <ul>
     <li>Pain : {{ burger.getPain().getName() }}</li>
     <li>Oignon : {{ burger.getOignon().getName() }}</li>
     <li>Sauces : {% for sauce in burger.getSauces() %} {{sauce.getName()}}, {% endfor %}</li>
-        
 </ul>
 
 
