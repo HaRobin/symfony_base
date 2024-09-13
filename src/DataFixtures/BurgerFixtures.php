@@ -38,6 +38,7 @@ class BurgerFixtures extends Fixture implements DependentFixtureInterface
             for ($i = 0; $i < rand(1, 3); $i++) {
                 $burger->addCommentaire($this->getReference(CommentaireFixtures::COMMENTAIRE_REFERENCE . '_' . rand(0, CommentaireFixtures::NUM_COMMENTAIRES - 1)));
             }
+            $burger->setImage($this->getReference(ImageFixtures::IMAGE_REFERENCE . '_' . $key));
             $manager->persist($burger);
             $this->addReference(self::BURGER_REFERENCE . '_' . $key, $burger);
         }

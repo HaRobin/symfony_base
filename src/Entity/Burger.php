@@ -143,6 +143,7 @@ class Burger
     public function setImage(?Image $image): static
     {
         $this->image = $image;
+        $image->setBurger($this);
 
         return $this;
     }
