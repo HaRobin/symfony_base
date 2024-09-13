@@ -7,14 +7,26 @@
 <h1> Le burger n'existe pas, pas de détails. </h1>
 
 {% else %}
-<h1> Bienvenue sur les détails du burger {{ burger['id'] }}, le {{ burger['name'] }} !</h1>
+<h1> Bienvenue sur les détails du burger {{ burger.getId() }}, le {{ burger.getName() }} !</h1>
 
-Voici sa description : 
-{{ burger['description'] }}
+Voici sa ses ingrédients : 
+<ul>
+    <li>Pain : {{ burger.getPain().getName() }}</li>
+    <li>Oignon : {{ burger.getOignon().getName() }}</li>
+    <li>Sauces : {% for sauce in burger.getSauces() %} {{sauce.getName()}}, {% endfor %}</li>
+        
+</ul>
 
-{# {% for key, value in burger %}
-{{ key }} : {{ value }} <br>
-{% endfor %} #}
+
+Voici ses commentaires : 
+<ul>
+    {% for commentaire in burger.getCommentaires() %}
+        <li>{{ commentaire.getContent() }}</li>
+    {% else %}
+        <li>No comments available.</li>
+    {% endfor %}
+</ul>
+
 
 {% endif %}
 

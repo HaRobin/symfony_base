@@ -103,7 +103,10 @@ class Burger
         return $this;
     }
 
-    public function getSauces(): ?ArrayCollection
+    /**
+     * @return Collection|Sauce[]
+     */
+    public function getSauces(): Collection|array
     {
         return $this->sauces;
     }
@@ -144,7 +147,10 @@ class Burger
         return $this;
     }
 
-    public function getCommentaires(): ?ArrayCollection
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection|array
     {
         return $this->commentaires;
     }
