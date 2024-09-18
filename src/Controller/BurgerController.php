@@ -47,6 +47,16 @@ class BurgerController extends AbstractController {
         ]);
     }
 
+    #[Route('/avoid', name:'avoid')]
+    public function avoir(BurgerRepository $burgerRepository, Request $request): Response {
+        $burgers = $burgerRepository->findByWithoutIngredient($request->query->get('ingredient') ?? 5);
+
+        return $this->render('burger/avoid.html.twig', [
+            'burgers' => $burgers,
+            'ingredient' => $request->query->get('ingredient')
+        ]);
+    }
+
     #[Route('/{id}', name: 'details')]
     public function show(int $id, BurgerRepository $burgerRepository): Response {
         $burger = $burgerRepository->find($id);

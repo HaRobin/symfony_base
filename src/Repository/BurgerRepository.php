@@ -40,7 +40,8 @@ class BurgerRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
-    public function findByIngredient(string $ingredient) {
+    public function findByIngredient(string $ingredient)
+    {
         return $this->createQueryBuilder('b')
             ->innerJoin('b.oignon', 'o')
             ->innerJoin('b.pain', 'p')
@@ -52,10 +53,30 @@ class BurgerRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findByExpensive(int $limit) {
+    public function findByExpensive(int $limit)
+    {
         return $this->createQueryBuilder('b')
             ->orderBy('b.price', 'DESC')
             ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByWithoutIngredient(string $ingredient)
+    {
+        $sub = $this->createQueryBuilder('sub')
+            ->select('sub.id')
+            ->innerJoin('sub.sauces', 's')
+            ->andWhere('LOWER(s.name) LIKE LOWER(:ingredient)');
+
+        return $this->createQueryBuilder('b')
+            ->innerJoin('b.oignon', 'o')
+            ->innerJoin('b.pain', 'p')
+            ->andWhere('LOWER(o.name) NOT LIKE LOWER(:ingredient) AND LOWER(p.name) NOT LIKE LOWER(:ingredient)')
+            ->andWhere($this->getEntityManager()->createQueryBuilder()->expr()->notIn('b.id', $sub->getDQL()))
+            ->groupBy('b.id')
+            ->setParameter('ingredient', '%' . $ingredient . '%')
             ->getQuery()
             ->getResult()
         ;
