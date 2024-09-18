@@ -40,4 +40,15 @@ class BurgerRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function findByIngredient(string $ingredient) {
+        return $this->createQueryBuilder('b')
+            ->innerJoin('b.oignon', 'o')
+            ->innerJoin('b.pain', 'p')
+            ->innerJoin('b.sauces', 's')
+            ->andWhere('LOWER(o.name) LIKE LOWER(:ingredient) OR LOWER(p.name) LIKE LOWER(:ingredient) OR LOWER(s.name) LIKE LOWER(:ingredient)')
+            ->setParameter('ingredient', '%' . $ingredient . '%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

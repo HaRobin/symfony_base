@@ -11,14 +11,24 @@
 <div class="example-wrapper">
     <h1>Hello !</h1>
 
-    <h1> Bienvenue sur la liste de tout les burgers !</h1>
-    <ul>
-        {% for burger in burgers %}
-            <li>
-                <a href="{{ path('burger_details', {'id': burger.id}) }}">{{ burger.name }}</a> : {{ burger.price }} €
-            </li>
-        {% endfor %}
-    </ul>
+    <h1> Bienvenue sur la liste des burgers !</h1>
+
+    <form action="{{ path('burger_index') }}" method="get">
+        <input type="text" name="ingredient" placeholder="Entrez un ingrédient" value="{{ ingredient }}">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    {% if burgers %}
+        <ul>
+            {% for burger in burgers %}
+                <li>
+                    <a href="{{ path('burger_details', {'id': burger.id}) }}">{{ burger.name }}</a> : {{ burger.price }} €
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun burger trouvé</p>
+    {% endif %}
     
 </div>
 {% endblock %}
