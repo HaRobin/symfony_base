@@ -51,4 +51,13 @@ class BurgerRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findByExpensive(int $limit) {
+        return $this->createQueryBuilder('b')
+            ->orderBy('b.price', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

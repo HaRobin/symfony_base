@@ -37,6 +37,16 @@ class BurgerController extends AbstractController {
         return new Response('Burger créé avec succès !');
     }
 
+    #[Route('/expensive', name:'expensive')]
+    public function expensive(BurgerRepository $burgerRepository, Request $request): Response {
+        $burgers = $burgerRepository->findByExpensive($request->query->get('limit') ?? 5);
+
+        return $this->render('burger/expensive.html.twig', [
+            'burgers' => $burgers,
+            'limit' => $request->query->get('limit')
+        ]);
+    }
+
     #[Route('/{id}', name: 'details')]
     public function show(int $id, BurgerRepository $burgerRepository): Response {
         $burger = $burgerRepository->find($id);
