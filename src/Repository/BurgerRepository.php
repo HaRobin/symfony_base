@@ -81,4 +81,18 @@ class BurgerRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findByAmountOfIngredients(int $amount)
+    {
+        return $this->createQueryBuilder('b')
+            ->innerJoin('b.oignon', 'o')
+            ->innerJoin('b.pain', 'p')
+            ->innerJoin('b.sauces', 's')
+            ->having('COUNT(DISTINCT s) + COUNT(DISTINCT o) + COUNT(DISTINCT p) = :amount')
+            ->groupBy('b.id')
+            ->setParameter('amount', $amount)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

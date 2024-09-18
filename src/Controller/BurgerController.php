@@ -57,6 +57,16 @@ class BurgerController extends AbstractController {
         ]);
     }
 
+    #[Route('/amountsofingredients', name:'amountsofingredients')]
+    public function amountsOfIngredients(BurgerRepository $burgerRepository, Request $request): Response {
+        $burgers = $burgerRepository->findByAmountOfIngredients($request->query->get('amount') ?? 5);
+
+        return $this->render('burger/amountsofingredients.html.twig', [
+            'burgers' => $burgers,
+            'amount' => $request->query->get('amount')
+        ]);
+    }
+
     #[Route('/{id}', name: 'details')]
     public function show(int $id, BurgerRepository $burgerRepository): Response {
         $burger = $burgerRepository->find($id);
