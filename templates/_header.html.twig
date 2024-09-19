@@ -1,9 +1,21 @@
 <header>
-    <h1>Bienvenue sur CRUDcroustillant</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ path('home') }}">Accueil</a></li>
-            {# <li><a href="{{ path('burger_list') }}">Nos Burgers</a></li> #}
-        </ul>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="{{ path('home') }}">
+				CRUDcroustillant
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('home') }}">Accueil</a>
+					</li>
+					{# Uncomment this when you add the burger list page #}
+					<li class="nav-item"><a class="nav-link" href="{{ path('burger_index') }}">Nos Burgers</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 </header>

@@ -1,4 +1,5 @@
 import './bootstrap.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.css';
 import { Application } from 'stimulus';
 import { definitionsFromContext } from "stimulus/webpack-helpers";
