@@ -11,10 +11,10 @@
 <div class="example-wrapper">
     <h1>Hello !</h1>
 
-    <h1> Bienvenue sur la liste des burgers !</h1>
+    <h1> Bienvenue sur la liste des burgers avec {{amount}} ingrédient !</h1>
 
-    <form action="{{ path('burger_index') }}" method="get">
-        <input type="text" name="ingredient" placeholder="Entrez un ingrédient" value="{{ ingredient }}">
+    <form action="{{ path('burger_amountsofingredients') }}" method="get">
+        <input type="text" name="amount" placeholder="Entrez chiffre" value="{{ amount }}">
         <button type="submit">Rechercher</button>
     </form>
 

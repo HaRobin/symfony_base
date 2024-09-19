@@ -12,8 +12,8 @@
     <h1>Hello !</h1>
 
     <h1> Bienvenue sur la liste des burgers !</h1>
-
-    <form action="{{ path('burger_index') }}" method="get">
+    <form action="{{ path('burger_avoid') }}" method="get">
+        <p>Entrez un ingrédient à éviter</p>
         <input type="text" name="ingredient" placeholder="Entrez un ingrédient" value="{{ ingredient }}">
         <button type="submit">Rechercher</button>
     </form>
