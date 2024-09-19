@@ -1,34 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommentaireController!{% endblock %}
+{% block title %}Hello CommentaireController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
-<div class="example-wrapper">
-    <h1>Hello !</h1>
+	<div class="w-75 mx-auto m-5">
 
-    <h1> Bienvenue sur la liste des burgers !</h1>
+		<div class="row row-cols-2">
+			<h1>
+				CRUDcroustillant's burgers !
+			</h1>
+			<form action="{{ path('burger_index') }}" method="get" class="d-flex mb-4">
+				<input type="text" name="ingredient" class="form-control me-2" placeholder="Entrez un ingrédient" value="{{ ingredient }}">
+				<button type="submit" class="btn btn-primary">Rechercher</button>
+			</form>
 
-    <form action="{{ path('burger_index') }}" method="get">
-        <input type="text" name="ingredient" placeholder="Entrez un ingrédient" value="{{ ingredient }}">
-        <button type="submit">Rechercher</button>
-    </form>
+		</div>
 
-    {% if burgers %}
-        <ul>
-            {% for burger in burgers %}
-                <li>
-                    <a href="{{ path('burger_details', {'id': burger.id}) }}">{{ burger.name }}</a> : {{ burger.price }} €
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Aucun burger trouvé</p>
-    {% endif %}
-    
-</div>
+
+		{% if burgers %}
+			<div class="row row-cols-1 row-cols-md-2  justify-content-around">
+				{% for burger in burgers %}
+					{# https://getbootstrap.com/docs/5.0/components/card/ #}
+
+					<div class="card m-3 w-25">
+						{% if burger.getImage() %}
+							<img src="{{ asset('images/' ~ burger.getImage().getName()) }}" class="card-img-top" alt="Burger Image" style="height: 256px; object-fit: cover;">
+						{% else %}
+							<img src="{{ asset('images/default-burger.png') }}" class="card-img-top" alt="Default Burger Image" style="height: 256px; object-fit: cover;">
+						{% endif %}
+						<div class="card-body">
+							<h5 class="card-title">{{ burger.getName() }}</h5>
+							{# <p class="card-text">{{ burger.getDescription() }}</p> #}
+						</div>
+						<div class="card-footer">
+							<a href="{{ path('burger_details', {'id': burger.id}) }}" class="btn btn-primary">Details</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p>Aucun burger trouvé</p>
+		{% endif %}
+
+	</div>
 {% endblock %}
