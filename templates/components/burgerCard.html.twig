@@ -1,0 +1,14 @@
+<div class="card m-3 w-25">
+	{% if burger.getImage() %}
+		<img src="{{ asset('images/' ~ burger.getImage().getName()) }}" class="card-img-top" alt="Burger Image" style="height: 256px; object-fit: cover;">
+	{% else %}
+		<img src="{{ asset('images/default-burger.png') }}" class="card-img-top" alt="Default Burger Image" style="height: 256px; object-fit: cover;">
+	{% endif %}
+	<div class="card-body">
+		<h5 class="card-title">{{ burger.getName() }}</h5>
+		{# <p class="card-text">{{ burger.getDescription() }}</p> #}
+	</div>
+	<div class="card-footer">
+		<a href="{{ path('burger_details', {'id': burger.id}) }}" class="btn btn-primary">Details</a>
+	</div>
+</div>

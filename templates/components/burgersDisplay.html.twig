@@ -1,0 +1,9 @@
+{% if burgers %}
+	<div class="row row-cols-1 row-cols-md-2 ">
+		{% for burger in burgers %}
+			{% include 'components/burgerCard.html.twig' with { 'burger' : burger} %}
+		{% endfor %}
+	</div>
+{% else %}
+	<p>Aucun burger trouvé</p>
+{% endif %}
