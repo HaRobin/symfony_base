@@ -1,34 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommentaireController!{% endblock %}
+{% block title %}
+	Expensive burgers -
+	{{ parent() }}
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
-<div class="example-wrapper">
-    <h1>Hello !</h1>
+	<div class="example-wrapper">
+		<h1>Hello !</h1>
 
-    <h1> Bienvenue sur la liste des burgers les plus chère !</h1>
+		<h1>
+			Bienvenue sur la liste des burgers les plus chère !</h1>
 
-    <form action="{{ path('burger_expensive') }}" method="get">
-        <input type="text" name="limit" placeholder="Entrez chiffre" value="{{ limit }}">
-        <button type="submit">Rechercher</button>
-    </form>
+		<form action="{{ path('burger_expensive') }}" method="get">
+			<input type="text" name="limit" placeholder="Entrez chiffre" value="{{ limit }}">
+			<button type="submit">Rechercher</button>
+		</form>
 
-    {% if burgers %}
-        <ul>
-            {% for burger in burgers %}
-                <li>
-                    <a href="{{ path('burger_details', {'id': burger.id}) }}">{{ burger.name }}</a> : {{ burger.price }} €
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Aucun burger trouvé</p>
-    {% endif %}
-    
-</div>
+		{% if burgers %}
+			<ul>
+				{% for burger in burgers %}
+					<li>
+						<a href="{{ path('burger_details', {'id': burger.id}) }}">{{ burger.name }}</a>
+						:
+						{{ burger.price }}
+						€
+					</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>Aucun burger trouvé</p>
+		{% endif %}
+
+	</div>
 {% endblock %}
