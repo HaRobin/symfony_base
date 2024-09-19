@@ -15,7 +15,7 @@ Encore
     //.setManifestKeyPrefix('build/')
 
     // Only needed if you are using Symfony and want to enable the Twig functions
-    // .enableStimulusBridge('./assets/controllers.json')
+    .enableStimulusBridge('./assets/controllers.json')
 
     /*
      * ENTRY CONFIG

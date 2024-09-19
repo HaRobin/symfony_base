@@ -2,7 +2,8 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "stimulus": "^3.2.2"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^4.7.0",
