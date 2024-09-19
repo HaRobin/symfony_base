@@ -63,3 +63,22 @@ Attention : Il vous faut PHP 8.2 pour faire fonctionner ce projet si vous avez P
 - N'hésitez pas à consulter la documentation de Symfony pour plus d'informations sur l'utilisation du framework : https://symfony.com/doc/current/index.html
 
 - Notez comment fonctionne votre projet dans le fichier README.md et mettez à jour ce fichier au fur et à mesure de l'avancement de votre projet pour aider les autres développeurs à comprendre comment fonctionne votre projet.
+
+---
+
+## Addition of bootstrap : 
+- `npm i bootstrap`
+- `composer require symfony/webpack-encore-bundle`
+- `npm install @symfony/webpack-encore --save-dev` 
+
+J2 : 
+
+- `composer require symfony/webpack-encore-bundle`
+- `npm install bootstrap jquery popper.js --save`
+- `npm run dev`
+- `composer require symfony/stimulus-bundle`
+- `npm install @symfony/stimulus-bundle --save` -> `composer require symfony/stimulus-bundle`
+
+- Commented out the stimulus-bundle use in `assets/bootstrap.js` because it was creating issues | stimuluse isn't used for now
+
+- `npm run dev` -> OK

@@ -40,4 +40,11 @@ class BurgerRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function findBurgersWithIngredient(string $ingredient) {
+        return $this->createQueryBuilder('b')
+            // ->join('b.')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
