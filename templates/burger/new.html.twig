@@ -6,8 +6,17 @@
     <h1>Ajouter un Nouveau Burger</h1>
  
     {{ form_start(form) }}
-        {{ form_row(form.name) }}
-        <button type="submit">Ajouter</button>
+ 
+    {# Autres champs du formulaire... #}
+ 
+    <div data-controller="sauce">
+        {{ form_row(form.sauces, {'attr': {'class': 'form-control', 'data-action': 'change->sauce#selectSauce'}}) }}
+        <p data-sauce-target="selected">Sélectionnez une sauce</p>
+        {# <button data-action="click->sauce#selectSauce">TEST</button>s #}
+    </div>
+ 
+    <button type="submit">Créer</button>
+ 
     {{ form_end(form) }}
  
     <a href="{{ path('oignon_index') }}">Retour à la liste des burgers</a>

@@ -1,0 +1,15 @@
+import { Controller } from '@hotwired/stimulus';
+
+export default class extends Controller {
+    static targets = ['sauce', 'selected'];
+
+    connect() {
+        console.log('Stimulus controller connected');
+    }
+
+    selectSauce(event) {
+        const sauceName = event.target.value;
+        console.log(`Selected sauce: ${sauceName}`);
+        this.selectedTarget.textContent = `Vous avez sélectionné : ${sauceName}`;
+    }
+}
