@@ -1,6 +1,6 @@
 <div class="card m-3 w-25">
 	{% if burger.getImage() %}
-		<img src="{{ asset('images/' ~ burger.getImage().getName()) }}" class="card-img-top" alt="Burger Image" style="height: 256px; object-fit: cover;">
+		<img src="{{ burger.getImage().getName() }}" class="card-img-top" alt="Burger Image" style="height: 256px; object-fit: cover;">
 	{% else %}
 		<img src="{{ asset('images/default-burger.png') }}" class="card-img-top" alt="Default Burger Image" style="height: 256px; object-fit: cover;">
 	{% endif %}

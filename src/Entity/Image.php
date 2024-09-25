@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
@@ -16,10 +17,13 @@ class Image
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(targetEntity: Burger::class)]
-    #[ORM\JoinColumn(name: 'burger_id', referencedColumnName: 'id')]
-    private $burger;
+    #[ORM\OneToMany(targetEntity: Burger::class, mappedBy: 'image')]
+    private $burgers;
 
+    public function __construct()
+    {
+        $this->burgers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -38,15 +42,24 @@ class Image
         return $this;
     }
 
-    public function getBurger(): ?Burger
+    public function addBurger(Burger $burger): static
     {
-        return $this->burger;
-    }
-
-    public function setBurger(?Burger $burger): static
-    {
-        $this->burger = $burger;
+        if (!$this->burgers->contains($burger)) {
+            $this->burgers[] = $burger;
+        }
 
         return $this;
+    }
+
+    public function removeBurger(Burger $burger): static
+    {
+        $this->burgers->removeElement($burger);
+
+        return $this;
+    }
+
+    public function getBurgers(): ArrayCollection
+    {
+        return $this->burgers;
     }
 }

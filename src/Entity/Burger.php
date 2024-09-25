@@ -34,7 +34,7 @@ class Burger
     #[ORM\ManyToMany(targetEntity: Sauce::class)]
     private $sauces;
 
-    #[ORM\OneToOne(targetEntity: Image::class)]
+    #[ORM\ManyToOne(targetEntity: Image::class)]
     private $image;
 
     /**
@@ -143,7 +143,7 @@ class Burger
     public function setImage(?Image $image): static
     {
         $this->image = $image;
-        $image->setBurger($this);
+        $image->addBurger($this);
 
         return $this;
     }
