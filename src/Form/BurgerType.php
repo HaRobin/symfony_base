@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Image;
 use App\Entity\Oignon;
 use App\Entity\Pain;
 use App\Entity\Sauce;
@@ -52,6 +53,11 @@ class BurgerType extends AbstractType
             'required' => true,
             // pour les relations ManyToMany utiliser by_reference => false
             'by_reference' => false
+        ])
+        ->add('image', EntityType::class, [
+            'class' => Image::class,
+            'choice_label' => 'name', 
+            'attr' => ['data-image-preview-target' => 'select', 'data-action' => 'change->image-preview#preview'],
         ])
         ;
     }

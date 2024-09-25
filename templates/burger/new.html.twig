@@ -1,23 +1,29 @@
 {% extends 'base.html.twig' %}
- 
-{% block title %}Nouveau Burger{% endblock %}
- 
+
+{% block title %}Nouveau Burger
+{% endblock %}
+
 {% block body %}
-    <h1>Ajouter un Nouveau Burger</h1>
- 
-    {{ form_start(form) }}
- 
-    {# Autres champs du formulaire... #}
- 
-    <div data-controller="sauce">
-        {{ form_row(form.sauces, {'attr': {'class': 'form-control', 'data-action': 'change->sauce#selectSauce'}}) }}
-        <p data-sauce-target="selected">Sélectionnez une sauce</p>
-        {# <button data-action="click->sauce#selectSauce">TEST</button>s #}
-    </div>
- 
-    <button type="submit">Créer</button>
- 
-    {{ form_end(form) }}
- 
-    <a href="{{ path('oignon_index') }}">Retour à la liste des burgers</a>
+
+	<div class="p-5">
+
+		<h1>Ajouter un Nouveau Burger</h1>
+
+		{{ form_start(form) }}
+
+		{{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+		{{ form_row(form.price, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.pain, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.oignon, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.image, {'attr': {'class': 'form-control'}}) }}
+
+		<div data-controller="sauce">
+			{{ form_row(form.sauces, {'attr': {'class': 'form-control', 'data-action': 'change->sauce#selectSauce'}}) }}
+		</div>
+
+		<button type="submit" class="form-control w-auto">Créer</button>
+
+		{{ form_end(form) }}
+
+	</div>
 {% endblock %}
