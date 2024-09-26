@@ -18,47 +18,55 @@ class BurgerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('name', TextType::class, [
-            'label' => 'Nom du burger'
-        ])
-        ->add('price', NumberType::class, [
-            'label' => 'Prix'
-        ])
-        ->add('pain', EntityType::class, [
-            'label' => 'Pain',
-            'class' => Pain::class,
-            'choice_label' => 'name',
-            'multiple' => false,
-            'expanded' => false,
-            'required' => true,
-            // pour les relations ManyToMany utiliser by_reference => false
-            // 'by_reference' => false
-        ])
-        ->add('oignon', EntityType::class, [
-            'label' => 'Oignon',
-            'class' => Oignon::class,
-            'choice_label' => 'name',
-            'multiple' => false,
-            'expanded' => false,
-            'required' => true,
-            // pour les relations ManyToMany utiliser by_reference => false
-            // 'by_reference' => false
-        ])
-        ->add('sauces', EntityType::class, [
-            'label' => 'Sauce',
-            'class' => Sauce::class,
-            'choice_label' => 'name',
-            'multiple' => true,
-            'expanded' => true,
-            'required' => true,
-            // pour les relations ManyToMany utiliser by_reference => false
-            'by_reference' => false
-        ])
-        ->add('image', EntityType::class, [
-            'class' => Image::class,
-            'choice_label' => 'name', 
-            'attr' => ['data-image-preview-target' => 'select', 'data-action' => 'change->image-preview#preview'],
-        ])
+            ->add('name', TextType::class, [
+                'label' => 'Nom du burger',
+                'label_attr' => ['class' => 'form-label'],
+                'attr' => ['placeholder' => 'Nom du burger', 'class' => 'form-control']
+            ])
+            ->add('price', NumberType::class, [
+                'label' => 'Prix',
+                'label_attr' => ['class' => 'form-label'],
+                'attr' => ['placeholder' => 'Prix du burger', 'class' => 'form-control']
+            ])
+            ->add('pain', EntityType::class, [
+                'label' => 'Pain',
+                'label_attr' => ['class' => 'form-label'],
+                'class' => Pain::class,
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+                'required' => true,
+                // pour les relations ManyToMany utiliser by_reference => false
+                // 'by_reference' => false
+            ])
+            ->add('oignon', EntityType::class, [
+                'label' => 'Oignon',
+                'label_attr' => ['class' => 'form-label'],
+                'class' => Oignon::class,
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+                'required' => true,
+                // pour les relations ManyToMany utiliser by_reference => false
+                // 'by_reference' => false
+            ])
+            ->add('sauces', EntityType::class, [
+                'label' => 'Sauces',
+                'label_attr' => ['class' => 'form-label'],
+                'class' => Sauce::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'required' => true,
+                'by_reference' => false,
+            ])
+            ->add('image', EntityType::class, [
+                'label' => 'Image',
+                'label_attr' => ['class' => 'form-label'],
+                'class' => Image::class,
+                'choice_label' => 'name',
+                // 'attr' => ['data-image-target' => 'select', 'data-action' => 'change->image#preview'],
+            ])
         ;
     }
 
