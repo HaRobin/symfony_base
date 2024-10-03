@@ -6,6 +6,7 @@ use App\Repository\BurgerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BurgerRepository::class)]
 class Burger
@@ -15,16 +16,20 @@ class Burger
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column]
     private ?float $price = null;
 
-
+    #[Assert\NotBlank]
     #[ORM\ManyToOne(targetEntity: Pain::class)]
     private $pain;
-
+    
+    
+    #[Assert\NotBlank]
     #[ORM\ManyToOne(targetEntity: Oignon::class)]
     private $oignon;
 

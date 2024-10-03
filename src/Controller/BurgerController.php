@@ -41,7 +41,7 @@ class BurgerController extends AbstractController {
         }
 
         return $this->render('burger/new.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

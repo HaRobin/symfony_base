@@ -12,20 +12,27 @@
 		<div class="row row-cols-1 row-cols-md-2" data-controller="image sauce">
 			<div class="col">
 				{{ form_start(form) }}
-				{{ form_row(form.name, {'attr': {'class': 'form-control mb-3'}}) }}
-				{{ form_row(form.price, {'attr': {'class': 'form-control mb-3'}}) }}
-				{{ form_row(form.pain, {'attr': {'class': 'form-control mb-3'}}) }}
-				{{ form_row(form.oignon, {'attr': {'class': 'form-control mb-3'}}) }}
-				{{ form_row(form.image, {'attr': {'class': 'form-control mb-3', 'data-action': 'change->image#selectImage'}}) }}
-				{{ form_row(form.sauces, {'attr': {'class': 'form-control mb-3'}}) }}
-				{{ form_end(form) }}
+				{{ form_row(form.name) }}
+				<div>
+					{{ form_label(form.price) }}
+					{{ form_widget(form.price) }}
+					{# <div class="invalid-feedback"> #}
+					<div class="text-danger">
+						{{ form_errors(form.price) }}
+					</div>
+				</div>
+				{# {{ form_row(form.price) }} #}
+				{{ form_row(form.pain) }}
+				{{ form_row(form.oignon) }}
+				{{ form_row(form.image, {'attr': { 'data-action': 'change->image#selectImage'}}) }}
+				{{ form_row(form.sauces) }}
 				<button type="submit" class="form-control w-auto">Créer</button>
+				{{ form_end(form) }}
 			</div>
 			<div class="col d-flex justify-content-center">
 				<img src="{{ asset('images/default-burger.png') }}" class="card-img-top m-auto" alt="Default Burger Image" style="max-height: 30em; max-width: 30em;" data-image-target="previewImage">
 			</div>
 		</div>
-
 
 	</div>
 {% endblock %}

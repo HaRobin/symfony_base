@@ -21,16 +21,19 @@ class BurgerType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom du burger',
                 'label_attr' => ['class' => 'form-label'],
-                'attr' => ['placeholder' => 'Nom du burger', 'class' => 'form-control']
+                'attr' => ['placeholder' => 'Nom du burger', 'class' => 'form-control mb-3'],
+                'required' => true
             ])
             ->add('price', NumberType::class, [
                 'label' => 'Prix',
                 'label_attr' => ['class' => 'form-label'],
-                'attr' => ['placeholder' => 'Prix du burger', 'class' => 'form-control']
+                'attr' => ['placeholder' => 'Prix du burger', 'class' => 'form-control mb-3', 'type' => 'decimal'],
+                'required' => true,
             ])
             ->add('pain', EntityType::class, [
                 'label' => 'Pain',
                 'label_attr' => ['class' => 'form-label'],
+                'attr' => ['class' => 'form-control mb-3'],
                 'class' => Pain::class,
                 'choice_label' => 'name',
                 'multiple' => false,
@@ -42,6 +45,7 @@ class BurgerType extends AbstractType
             ->add('oignon', EntityType::class, [
                 'label' => 'Oignon',
                 'label_attr' => ['class' => 'form-label'],
+                'attr' => ['class' => 'form-control mb-3'],
                 'class' => Oignon::class,
                 'choice_label' => 'name',
                 'multiple' => false,
@@ -53,6 +57,7 @@ class BurgerType extends AbstractType
             ->add('sauces', EntityType::class, [
                 'label' => 'Sauces',
                 'label_attr' => ['class' => 'form-label'],
+                'attr' => ['class' => 'form-control mb-3'],
                 'class' => Sauce::class,
                 'choice_label' => 'name',
                 'multiple' => true,
@@ -63,9 +68,10 @@ class BurgerType extends AbstractType
             ->add('image', EntityType::class, [
                 'label' => 'Image',
                 'label_attr' => ['class' => 'form-label'],
+                'attr' => ['class' => 'form-control mb-3'],
                 'class' => Image::class,
                 'choice_label' => 'name',
-                // 'attr' => ['data-image-target' => 'select', 'data-action' => 'change->image#preview'],
+                // 'attr' => ['data-image-target' => 'select', 'data-action' => 'change->image      #preview'],
             ])
         ;
     }
