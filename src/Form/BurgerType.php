@@ -61,7 +61,6 @@ class BurgerType extends AbstractType
                 'class' => Sauce::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'expanded' => true,
                 'required' => true,
                 'by_reference' => false,
             ])

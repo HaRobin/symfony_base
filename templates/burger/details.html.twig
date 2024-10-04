@@ -21,8 +21,9 @@
 			!</h1>
 
 		{% if burger.getImage() %}
-			<img class="card-img-top" src="{{ asset('images/' ~ burger.getImage().getName()) }}" alt="Card image cap" style="max-height: 40%; max-width: 60%;">
-			<br>
+			<img src="{{ burger.getImage().getName() }}" class="card-img-top" alt="Burger Image" style="height: 256px; object-fit: cover;">
+		{% else %}
+			<img src="{{ asset('images/default-burger.png') }}" class="card-img-top" alt="Default Burger Image" style="height: 256px; object-fit: cover;">
 		{% endif %}
 
 		Voici sa ses ingrédients :
